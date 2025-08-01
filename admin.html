@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>لوحة الطلبات</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f2f2f2;
+      color: #333;
+      padding: 40px;
+      text-align: center;
+    }
+
+    #language-toggle {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background-color: #CBA135;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+
+    #login {
+      max-width: 400px;
+      margin: auto;
+      padding: 30px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    #password {
+      padding: 10px;
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+
+    #check-btn {
+      margin-top: 20px;
+      padding: 10px 30px;
+      border: none;
+      border-radius: 8px;
+      background-color: #CBA135;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    #orders {
+      display: none;
+      margin-top: 40px;
+    }
+
+    table {
+      margin: auto;
+      width: 100%;
+      max-width: 1000px;
+      border-collapse: collapse;
+      background-color: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 15px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #CBA135;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="language-toggle">English</button>
+
+  <div id="login">
+    <h2 data-key="enter-password">أدخل كلمة المرور</h2>
+    <input type="password" id="password" placeholder="كلمة المرور" data-key="password-placeholder">
+    <button id="check-btn" data-key="login-btn">دخول</button>
+    <p id="error" style="color:red;margin-top:10px;"></p>
+  </div>
+
+  <div id="orders">
+    <h2 data-key="received-orders">الطلبات المستلمة</h2>
+    <table id="orders-table">
+      <thead>
+        <tr>
+          <th data-key="name">الاسم</th>
+          <th data-key="phone">رقم الهاتف</th>
+          <th data-key="address">العنوان</th>
+          <th data-key="product">المنتج</th>
+          <th data-key="quantity">الكمية</th>
+          <th data-key="color">اللون</th>
+          <th data-key="notes">الملاحظات</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script>
+    const correctPassword = "moaazmoaaz";
+    let currentLang = "ar";
+
+    const translations = {
+      ar: {
+        "enter-password": "أدخل كلمة المرور",
+        "password-placeholder": "كلمة المرور",
+        "login-btn": "دخول",
+        "received-orders": "الطلبات المستلمة",
+        "name": "الاسم",
+        "phone": "رقم الهاتف",
+        "address": "العنوان",
+        "product": "المنتج",
+        "quantity": "الكمية",
+        "color": "اللون",
+        "notes": "الملاحظات",
+        "no-orders": "لا توجد طلبات"
+      },
+      en: {
+        "enter-password": "Enter Password",
+        "password-placeholder": "Password",
+        "login-btn": "Login",
+        "received-orders": "Received Orders",
+        "name": "Name",
+        "phone": "Phone",
+        "address": "Address",
+        "product": "Product",
+        "quantity": "Quantity",
+        "color": "Color",
+        "notes": "Notes",
+        "no-orders": "No orders found"
+      }
+    };
+
+    function translatePage() {
+      document.documentElement.lang = currentLang;
+      document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
+      document.querySelectorAll("[data-key]").forEach(el => {
+        const key = el.getAttribute("data-key");
+        if (el.tagName === "INPUT") {
+          el.placeholder = translations[currentLang][key];
+        } else {
+          el.innerText = translations[currentLang][key];
+        }
+      });
+      document.getElementById("language-toggle").innerText = currentLang === "ar" ? "English" : "العربية";
+    }
+
+    document.getElementById("language-toggle").addEventListener("click", () => {
+      currentLang = currentLang === "ar" ? "en" : "ar";
+      translatePage();
+    });
+
+    document.getElementById("check-btn").addEventListener("click", () => {
+      const entered = document.getElementById("password").value;
+      if (entered === correctPassword) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("orders").style.display = "block";
+        loadOrders();
+      } else {
+        document.getElementById("error").innerText = currentLang === "ar" ? "كلمة المرور غير صحيحة!" : "Incorrect password!";
+      }
+    });
+
+    function loadOrders() {
+      const tableBody = document.querySelector("#orders-table tbody");
+      tableBody.innerHTML = "";
+
+      const orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+      if (orders.length === 0) {
+        tableBody.innerHTML = `<tr><td colspan='7'>${translations[currentLang]["no-orders"]}</td></tr>`;
+        return;
+      }
+
+      orders.forEach(order => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${order.name}</td>
+          <td>${order.phone}</td>
+          <td>${order.address}</td>
+          <td>${order.product}</td>
+          <td>${order.quantity}</td>
+          <td>${order.color}</td>
+          <td>${order.notes}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    translatePage(); // Initial translation
+  </script>
+
+</body>
+</html>

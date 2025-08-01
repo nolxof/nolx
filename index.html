@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+  <html lang="en" class="dark">
+
+  <script>
+  document.documentElement.classList.add('dark');
+  localStorage.setItem('theme', 'dark');
+</script>
+
+<script>
+  // لو مفيش تفضيل سابق، هنبدأ بالوضع الليلي
+  if (!localStorage.getItem('theme')) {
+    document.documentElement.classList.add('dark');
+    localStorage.setItem('theme', 'dark');
+  } else if (localStorage.getItem('theme') === 'dark') {
+    document.documentElement.classList.add('dark');
+  }
+</script>
+  
+<head>
+  <script>
+    document.documentElement.classList.add("dark");
+
+    if (localStorage.getItem("theme") === "light") {
+    }
+  </script>
+  <!-- باقي عناصر الـ head -->
+</head>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NOLX | Official Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <style>
+    .dark-mode {
+      background-color: #111;
+      color: #f8f6f0;
+    }
+    .toggle-dark {
+      cursor: pointer;
+      background: #CBA135;
+      border: none;
+      color: #111;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+    .shop-btn {
+      display: inline-block;
+      margin-top: 30px;
+      background-color: #CBA135;
+      color: #111111;
+      padding: 14px 28px;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+    }
+    .shop-btn:hover {
+      background-color: #a98327;
+    }
+    .products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  padding: 40px 20px;
+}
+
+.product {
+  width: 300px;
+  text-align: center;
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+}
+
+.product img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* 📱 موبايل: خلي المنتج ياخد عرض كامل */
+@media (max-width: 768px) {
+  .product {
+    width: 100%;
+  }
+}
+.floating-dark-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background-color: #CBA135;
+  color: #111;
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.floating-dark-toggle:hover {
+  background-color: #a98327;
+  transform: scale(1.05);
+}
+@media (max-width: 768px) {
+  .floating-dark-toggle {
+    width: 42px;
+    height: 42px;
+    font-size: 16px;
+    bottom: 16px;
+    right: 16px;
+  }
+}
+body.dark-mode .about-section {
+  background: linear-gradient(to top, #111 90%, #222 100%);
+  color: #f8f6f0;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">NOLX</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="products.html">Shop</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+  <section class="hero" data-aos="fade-up">
+    <h1>Elevate Your Style</h1>
+    <p>Discover luxury streetwear redefined by quality and minimalism.</p>
+    <a class="shop-btn" href="products.html">Shop Now</a>
+  </section>
+  <section class="about-section">
+  <h2>What Is It NOLEX?</h2>
+  <p>
+    We are a luxury fashion brand crafted for bold individuals who seek elegance and identity.
+    Our designs blend premium materials with minimalist aesthetics.
+  </p>
+  <a href="products.html" class="discover-link">
+    Discover Products <span>↗</span>
+  </a>
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-youtube"></i></a>
+    <a href="#"><i class="fab fa-tiktok"></i></a>
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+  </div>
+</section>
+  <footer class="footer">
+    &copy; 2025 NOLX. All rights reserved.
+  </footer>
+  <script>
+  document.documentElement.classList.add('dark');
+  localStorage.setItem('theme', 'dark');
+</script>
+
+<script>
+  // لو مفيش تفضيل سابق، هنبدأ بالوضع الليلي
+  if (!localStorage.getItem('theme')) {
+    document.documentElement.classList.add('dark');
+    localStorage.setItem('theme', 'dark');
+  } else if (localStorage.getItem('theme') === 'dark') {
+    document.documentElement.classList.add('dark');
+  }
+</script>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+  // افترض أن الوضع الليلي هو الافتراضي
+  document.documentElement.classList.add("dark");
+
+  // لو المستخدم غيره قبل كده، خليه يرجع للّون اللي هو اختاره
+  if (localStorage.getItem("theme") === "light")
+</script>
+
+  <script>
+    AOS.init();
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+    
+ </script>
+ <button class="floating-dark-toggle" onclick="toggleDarkMode()">☀</button>
+ <script>
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+  }
+</script>
+<script>
+  document.documentElement.classList.add('dark');
+  localStorage.setItem('theme', 'dark');
+</script>
+
+</body>
+</html>

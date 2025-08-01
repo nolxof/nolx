@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOLX | منتجاتنا الفاخرة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <style>
+    :root {
+      --primary: #1a1a1a;
+      --secondary: #CBA135;
+      --light: #f8f8f8;
+      --dark: #111;
+      --text: #333;
+      --border: #e0e0e0;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: var(--light);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    
+    /* Header */
+    header {
+      background-color: var(--primary);
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--secondary);
+    }
+    
+    nav {
+      display: flex;
+      gap: 25px;
+    }
+    
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+    
+    nav a:hover {
+      color: var(--secondary);
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--secondary);
+      transition: width 0.3s;
+    }
+    
+    nav a:hover::after {
+      width: 100%;
+    }
+    
+    /* Page Header */
+    .page-header {
+      text-align: center;
+      padding: 80px 20px 50px;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('background.jpg') center/cover no-repeat;
+      color: white;
+    }
+    
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin-bottom: 15px;
+      color: var(--secondary);
+    }
+    
+    .page-header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      color: rgba(255,255,255,0.8);
+    }
+    
+    /* Products Grid */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 50px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
+    .product-card img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+    
+    .product-card:hover img {
+      transform: scale(1.05);
+    }
+    
+    .product-info {
+      padding: 20px;
+    }
+    
+    .product-info h3 {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    
+    .price {
+      font-size: 1.2rem;
+      color: var(--secondary);
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: block;
+    }
+    
+    .product-actions {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .shop-now-btn {
+      flex: 1;
+      background: var(--primary);
+      color: white;
+      padding: 12px;
+      text-align: center;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+    
+    .shop-now-btn:hover {
+      background: #333;
+    }
+    
+    .add-to-cart-btn {
+      flex: 1;
+      background: var(--secondary);
+      color: var(--primary);
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .add-to-cart-btn:hover {
+      background: #b58a2a;
+    }
+    
+    .add-to-cart-btn .icon {
+      width: 18px;
+      height: 18px;
+    }
+    
+    /* Dark Mode */
+    .dark-mode {
+      background-color: var(--dark);
+      color: var(--light);
+    }
+    
+    .dark-mode .product-card {
+      background: #222;
+      color: white;
+    }
+    
+    .dark-mode .price {
+      color: var(--secondary);
+    }
+    
+    .dark-mode .shop-now-btn {
+      background: #333;
+    }
+    
+    .floating-dark-toggle {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background-color: var(--secondary);
+      color: var(--primary);
+      border: none;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    
+    .floating-dark-toggle:hover {
+      transform: scale(1.1);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 30px;
+      margin-top: 50px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      nav {
+        gap: 15px;
+      }
+      
+      .page-header h1 {
+        font-size: 2rem;
+      }
+      
+      .page-header p {
+        font-size: 1rem;
+      }
+      
+      .products {
+        padding: 30px 15px;
+        grid-template-columns: 1fr;
+      }
+      
+      .product-actions {
+        flex-direction: column;
+      }
+      
+      .floating-dark-toggle {
+        bottom: 20px;
+        left: 20px;
+        width: 45px;
+        height: 45px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">NOLX</div>
+    <nav>
+      <a href="index.html">الرئيسية</a>
+      <a href="products.html">المتجر</a>
+      <a href="cart.html">عربة التسوق</a>
+    </nav>
+  </header>
+  
+  <section class="page-header" data-aos="fade-down">
+    <h1>All Products</h1>
+    <p>Discover Our Exclusive Streetwear Couture</p>
+  </section>
+  
+  <div class="products">
+    <!-- Product 1 -->
+    <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+      <img src="اسود محجر.jpg" alt="Black Washed Bolivar">
+      <div class="product-info">
+        <h3>بوليفار اسود محجر تيشريت 15 %- خصم السعر الاصلي 400 </h3>
+        <span class="price">339 ج.م</span>
+        <div class="product-actions">
+          <a href="order.html" class="shop-now-btn">اطلب الآن</a>
+          <button class="add-to-cart-btn" onclick="addToCart('بوليفار أسود محجر', 382.5)">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 7M7 13l-1.5 6h13l-1.5-6M9 21h.01M15 21h.01"/>
+            </svg>
+            أضف للسلة
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Product 2 -->
+    <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+      <img src="ابيض.jpg" alt="White Bolivar">
+      <div class="product-info">
+        <h3>بوليفار ابيض تيشريت 15 %- خصم السعر الاصلي 400</h3>
+        <span class="price">339 ج.م</span>
+        <div class="product-actions">
+          <a href="order.html" class="shop-now-btn">اطلب الآن</a>
+          <button class="add-to-cart-btn" onclick="addToCart('بوليفار أبيض', 399)">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 7M7 13l-1.5 6h13l-1.5-6M9 21h.01M15 21h.01"/>
+            </svg>
+            أضف للسلة
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Product 3 -->
+    <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+      <img src="بني.jpg" alt="Brown Bolivar">
+      <div class="product-info">
+        <h3>بوليفار بني تيشريت 15 %- خصم السعر الاصلي 400ب</h3>
+        <span class="price">339 ج.م</span>
+        <div class="product-actions">
+          <a href="order.html" class="shop-now-btn">اطلب الآن</a>
+          <button class="add-to-cart-btn" onclick="addToCart('بوليفار بني', 399)">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 7M7 13l-1.5 6h13l-1.5-6M9 21h.01M15 21h.01"/>
+            </svg>
+            أضف للسلة
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Product 4 -->
+    <div class="product-card" data-aos="fade-up" data-aos-delay="400">
+      <img src="اسود.jpg" alt="Black Bolivar">
+      <div class="product-info">
+        <h3>بوليفار اسود تيشريت 15 %- خصم السعر الاصلي 400</h3>
+        <span class="price">339 ج.م</span>
+        <div class="product-actions">
+          <a href="order.html" class="shop-now-btn">اطلب الآن</a>
+          <button class="add-to-cart-btn" onclick="addToCart('بوليفار أسود', 399)">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 7M7 13l-1.5 6h13l-1.5-6M9 21h.01M15 21h.01"/>
+            </svg>
+            أضف للسلة
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="footer">
+    &copy; 2025 NOLX. جميع الحقوق محفوظة.
+  </footer>
+  
+  <button class="floating-dark-toggle" onclick="toggleDarkMode()">☀</button>
+  
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+    
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      const icon = document.querySelector('.floating-dark-toggle');
+      if (document.body.classList.contains("dark-mode")) {
+        icon.innerHTML = "🌙";
+      } else {
+        icon.innerHTML = "☀";
+      }
+    }
+    
+    function addToCart(name, price) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+      let existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+      
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`تمت إضافة ${name} إلى سلة التسوق`);
+    }
+  </script>
+</body>
+</html>

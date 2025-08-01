@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Luxury Black Tee | ZELQ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Playfair Display', serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f6f0;
+      color: #111;
+    }
+
+    .dark-mode {
+      background-color: #111;
+      color: #f8f6f0;
+    }
+
+    header {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: transparent;
+    }
+
+    .product-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .product-container img {
+      max-width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+
+    .product-details {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .product-details h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      color: #CBA135;
+      font-weight: bold;
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+    }
+
+    .description {
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    .size-guide {
+      margin-bottom: 30px;
+    }
+
+    .size-guide table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .size-guide th, .size-guide td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .buy-btn {
+      background-color: #CBA135;
+      color: #111;
+      padding: 12px 24px;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 10px;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+    }
+
+    .buy-btn:hover {
+      background-color: #a98327;
+    }
+
+    .toggle-dark {
+      cursor: pointer;
+      background: #CBA135;
+      border: none;
+      color: #111;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .product-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">NOLX</div>
+      <nav>
+      <a href="index.html">Home</a>
+    </nav>
+  </header>
+
+  <section class="product-container">
+    <img src="reed.jpg" alt="T-shirt red" />
+    
+    <div class="product-details">
+      <h1>T-shirt red</h1>
+      <p class="price">جنيه مصري 200.00</p>
+      <p class="description">
+        Our luxury black tee is crafted with precision and high-end materials, giving you a soft, modern fit with elite vibes.
+        Perfect for minimalists with taste.
+      </p>
+
+      <div class="size-guide">
+        <h3>Size Guide</h3>
+        <table>
+          <tr><th>Size</th><th>Chest</th><th>Length</th></tr>
+          <tr><td>S</td><td>90 cm</td><td>68 cm</td></tr>
+          <tr><td>M</td><td>96 cm</td><td>70 cm</td></tr>
+          <tr><td>L</td><td>102 cm</td><td>72 cm</td></tr>
+          <tr><td>XL</td><td>108 cm</td><td>74 cm</td></tr>
+        </table>
+      </div>
+
+      <a href="order.html" class="buy-btn">Order Now</a>
+    </div>
+  </section>
+<button class="floating-dark-toggle" onclick="toggleDarkMode()">☀</button>
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+      }
+    });
+  </script>
+</body>
+</html>

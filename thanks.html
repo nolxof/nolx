@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>شكراً لطلبك | NOLX</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2E7D32; /* أخضر داكن فاخر */
+      --secondary: #1B5E20; /* أخضر أغمق */
+      --accent: #4CAF50; /* أخضر فاتح */
+      --light: #F5F5F5;
+      --dark: #212121;
+      --text: #333333;
+      --border: #E0E0E0;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: var(--light);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      flex-direction: column;
+      line-height: 1.6;
+    }
+    
+    .thank-you-card {
+      background: white;
+      padding: 50px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      max-width: 600px;
+      width: 90%;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .thank-you-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
+    
+    .checkmark-container {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 30px;
+    }
+    
+    .checkmark-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: var(--primary);
+      border-radius: 50%;
+      opacity: 0.1;
+    }
+    
+    .checkmark {
+      position: relative;
+      width: 60px;
+      height: 60px;
+      background-color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 20px auto;
+      color: white;
+      font-size: 30px;
+      animation: checkmarkScale 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+    }
+    
+    @keyframes checkmarkScale {
+      0% { transform: scale(0); }
+      80% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    
+    h1 {
+      font-size: 2.2rem;
+      color: var(--dark);
+      margin-bottom: 15px;
+      font-weight: 700;
+      position: relative;
+      display: inline-block;
+    }
+    
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background-color: var(--accent);
+    }
+    
+    p {
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 25px;
+      opacity: 0;
+      animation: fadeIn 0.8s 0.4s forwards;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .order-id {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin: 25px 0;
+      padding: 12px 25px;
+      background-color: rgba(46, 125, 50, 0.1);
+      border-radius: 30px;
+      display: inline-block;
+      border: 1px dashed var(--primary);
+      opacity: 0;
+      animation: fadeIn 0.8s 0.6s forwards;
+    }
+    
+    .divider {
+      height: 1px;
+      background-color: var(--border);
+      margin: 30px 0;
+      position: relative;
+      opacity: 0;
+      animation: fadeIn 0.8s 0.8s forwards;
+    }
+    
+    .divider::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 6px;
+      background-color: var(--accent);
+      border-radius: 3px;
+    }
+    
+    .contact-text {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeIn 0.8s 1s forwards;
+    }
+    
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeIn 0.8s 1.2s forwards;
+    }
+    
+    .social-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .social-icon::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .social-icon:hover::after {
+      transform: translateY(0);
+    }
+    
+    .social-icon:hover {
+      transform: translateY(-3px);
+    }
+    
+    .whatsapp { background-color: #25D366; }
+    .facebook { background-color: #1877F2; }
+    .instagram { 
+      background: linear-gradient(45deg, #405DE6, #833AB4, #C13584, #E1306C, #FD1D1D);
+    }
+    .email { background-color: var(--primary); }
+    
+    @media (max-width: 600px) {
+      .thank-you-card {
+        padding: 30px 20px;
+      }
+      
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      .checkmark-container {
+        width: 80px;
+        height: 80px;
+      }
+      
+      .checkmark {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="thank-you-card">
+    <div class="checkmark-container">
+      <div class="checkmark-bg"></div>
+      <div class="checkmark">
+        <i class="fas fa-check"></i>
+      </div>
+    </div>
+    
+    <h1>تم تأكيد طلبك بنجاح</h1>
+    <p>شكراً لثقتك بنا. تم استلام طلبك وسنتواصل معك خلال 24 ساعة لتأكيد التفاصيل.</p>
+    
+    <div class="order-id" id="orderIdBox"></div>
+    
+    <div class="divider"></div>
+    
+    <p class="contact-text">للتواصل مع خدمة العملاء:</p>
+    
+    <div class="social-icons">
+      <a href="#" class="social-icon whatsapp" title="واتساب">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+      <a href="#" class="social-icon facebook" title="فيسبوك">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="#" class="social-icon instagram" title="إنستجرام">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="mailto:info@nolx.com" class="social-icon email" title="البريد الإلكتروني">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // عرض رقم الطلب
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderId = urlParams.get('order');
+    if (orderId) {
+      document.getElementById("orderIdBox").innerText = `رقم الطلب: #${orderId}`;
+    }
+    
+    // تأثيرات إضافية عند التحميل
+    window.addEventListener('load', () => {
+      // يمكن إضافة أي تأثيرات إضافية هنا
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOLX - سلة التسوق الفاخرة</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #111111;
+      --secondary: #CBA135;
+      --light: #F8F6F0;
+      --dark: #1A1A1A;
+      --text: #333333;
+      --border: #E0E0E0;
+      --error: #ff4d4d;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: var(--light);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Header */
+    header {
+      background-color: var(--primary);
+      padding: 25px 50px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    }
+    
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--secondary);
+      letter-spacing: 1px;
+    }
+    
+    .nav-container {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    
+    nav {
+      display: flex;
+      gap: 25px;
+    }
+    
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+      font-size: 15px;
+    }
+    
+    nav a:hover {
+      color: var(--secondary);
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--secondary);
+      transition: width 0.3s;
+    }
+    
+    nav a:hover::after {
+      width: 100%;
+    }
+    
+    .lang-switch {
+      background: transparent;
+      border: 1px solid white;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'Tajawal', sans-serif;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    
+    .lang-switch:hover {
+      background: rgba(255,255,255,0.1);
+    }
+    
+    /* Main Content */
+    .main-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .cart-container {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 30px;
+      width: 100%;
+    }
+    
+    .cart-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .cart-title i {
+      color: var(--secondary);
+    }
+    
+    /* Cart Layout */
+    .cart-layout {
+      display: flex;
+      gap: 30px;
+    }
+    
+    .cart-items-container {
+      flex: 2;
+    }
+    
+    .cart-summary-container {
+      flex: 1;
+    }
+    
+    /* Cart Items */
+    .cart-items {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 30px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    
+    .cart-item:hover {
+      background: rgba(203, 161, 53, 0.03);
+    }
+    
+    .item-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex: 1;
+    }
+    
+    .item-image {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    
+    .item-details {
+      flex: 1;
+    }
+    
+    .item-details h3 {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    
+    .item-price {
+      color: var(--secondary);
+      font-weight: 600;
+    }
+    
+    .item-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .quantity-btn {
+      background: var(--light);
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .quantity-btn:hover {
+      background: var(--border);
+    }
+    
+    .remove-btn {
+      background: transparent;
+      border: none;
+      color: #999;
+      cursor: pointer;
+      transition: color 0.3s;
+      font-size: 16px;
+    }
+    
+    .remove-btn:hover {
+      color: var(--error);
+    }
+    
+    /* Cart Summary */
+    .cart-summary {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 100px;
+    }
+    
+    .summary-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+    
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+    
+    .total-row {
+      border-top: 1px solid var(--border);
+      padding-top: 15px;
+      margin-top: 15px;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    
+    .checkout-btn {
+      display: block;
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 25px;
+      transition: background 0.3s;
+      text-align: center;
+      text-decoration: none;
+    }
+    
+    .checkout-btn:hover {
+      background: #333;
+    }
+    
+    .continue-shopping {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .empty-cart {
+      text-align: center;
+      padding: 50px;
+      color: #999;
+    }
+    
+    .empty-cart i {
+      font-size: 50px;
+      margin-bottom: 20px;
+      color: var(--border);
+    }
+    
+    .empty-cart .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: var(--primary);
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    
+    .empty-cart .btn:hover {
+      background: #333;
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      .cart-layout {
+        flex-direction: column;
+      }
+      
+      .cart-summary {
+        position: static;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      header {
+        padding: 20px;
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .nav-container {
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      nav {
+        gap: 15px;
+      }
+      
+      .cart-container {
+        padding: 0 20px;
+        margin: 30px auto;
+      }
+      
+      .cart-title {
+        font-size: 2rem;
+      }
+      
+      .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 15px;
+      }
+      
+      .item-info {
+        width: 100%;
+      }
+      
+      .item-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">NOLX</div>
+    <div class="nav-container">
+      <button class="lang-switch" onclick="toggleLang()">EN</button>
+      <nav>
+        <a href="index.html" data-key="home">الرئيسية</a>
+        <a href="products.html" data-key="shop">المتجر</a>
+        <a href="#" data-key="contact">تواصل</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <div class="cart-container">
+      <h1 class="cart-title" id="cart-title">
+        <i class="fas fa-shopping-bag"></i>
+        <span>سلة التسوق</span>
+      </h1>
+      
+      <div class="cart-layout">
+        <div class="cart-items-container" id="cart-items-container">
+          <!-- سيتم ملؤها بواسطة JavaScript -->
+        </div>
+        
+        <div class="cart-summary-container">
+          <div class="cart-summary" id="cart-summary">
+            <!-- سيتم ملؤها بواسطة JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // بيانات المنتجات (يمكن استبدالها بقاعدة بيانات حقيقية)
+    const productsDatabase = {
+      "بليزر أسود محجر": { image: "اسود محجر.jpg", price: 382.5 },
+      "بليزر أبيض": { image: "ابيض.jpg", price: 339 },
+      "بليزر بني": { image: "بني.jpg", price: 339 },
+      "بليزر أسود": { image: "اسود.jpg", price: 339 }
+    };
+
+    const translations = {
+      ar: {
+        home: "الرئيسية",
+        shop: "المتجر",
+        contact: "تواصل",
+        cartTitle: "سلة التسوق",
+        empty: "سلة التسوق فارغة",
+        subtotal: "المجموع الفرعي",
+        total: "الإجمالي",
+        checkout: "إتمام الطلب",
+        continueShopping: "متابعة التسوق",
+        remove: "إزالة",
+        redirect: "جاري تحويلك إلى صفحة الدفع",
+        emptyCartTitle: "سلة التسوق فارغة",
+        emptyCartMessage: "ابدأ بالتسوق لإضافة منتجات إلى سلة التسوق",
+        shopNow: "تسوق الآن"
+      },
+      en: {
+        home: "Home",
+        shop: "Shop",
+        contact: "Contact",
+        cartTitle: "Shopping Cart",
+        empty: "Your cart is empty",
+        subtotal: "Total",
+        total: "Total",
+        checkout: "Proceed to Checkout",
+        continueShopping: "Continue Shopping",
+        remove: "Remove",
+        redirect: "Redirecting to checkout",
+        emptyCartTitle: "Your Cart is Empty",
+        emptyCartMessage: "Start shopping to add items to your cart",
+        shopNow: "Shop Now"
+      }
+    };
+
+    let currentLang = localStorage.getItem("lang") || "ar";
+    document.documentElement.lang = currentLang;
+    document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
+
+    function applyTranslations() {
+      const t = translations[currentLang];
+      document.querySelectorAll("[data-key]").forEach(el => {
+        el.textContent = t[el.getAttribute("data-key")];
+      });
+      document.getElementById("cart-title").querySelector("span").textContent = t.cartTitle;
+      document.querySelector(".lang-switch").textContent = currentLang === "ar" ? "EN" : "AR";
+    }
+
+    function toggleLang() {
+      currentLang = currentLang === "ar" ? "en" : "ar";
+      localStorage.setItem("lang", currentLang);
+      location.reload();
+    }
+
+    const cartItemsContainer = document.getElementById('cart-items-container');
+    const cartSummaryContainer = document.getElementById('cart-summary');
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function renderCart() {
+      const t = translations[currentLang];
+      
+      // عرض عناصر السلة
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = `
+          <div class="empty-cart">
+            <i class="fas fa-shopping-bag"></i>
+            <h3>${t.emptyCartTitle}</h3>
+            <p>${t.emptyCartMessage}</p>
+            <a href="products.html" class="btn">${t.shopNow}</a>
+          </div>
+        `;
+        cartSummaryContainer.innerHTML = '';
+        return;
+      }
+
+      cartItemsContainer.innerHTML = '<div class="cart-items" id="cart-items"></div>';
+      const cartItemsEl = document.getElementById('cart-items');
+      
+      cart.forEach((item, index) => {
+        const productImage = productsDatabase[item.name]?.image || 'placeholder.jpg';
+        cartItemsEl.innerHTML += `
+          <div class="cart-item" data-id="${index}">
+            <div class="item-info">
+              <img src="${productImage}" alt="${item.name}" class="item-image">
+              <div class="item-details">
+                <h3>${item.name}</h3>
+                <div class="item-price">${item.price} ج.م</div>
+              </div>
+            </div>
+            <div class="item-actions">
+              <div class="quantity-control">
+                <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">-</button>
+                <span>${item.qty}</span>
+                <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
+              </div>
+              <button class="remove-btn" onclick="removeItem(${index})">
+                <i class="fas fa-trash"></i> ${t.remove}
+              </button>
+            </div>
+          </div>
+        `;
+      });
+
+      // عرض ملخص السلة
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      cartSummaryContainer.innerHTML = `
+        <h3 class="summary-title">${t.cartTitle}</h3>
+        <div class="summary-row">
+          <span>${t.subtotal}</span>
+          <span>${subtotal} ج.م</span>
+        </div>
+        <div class="summary-row">
+          
+        </div>
+    
+        <a href="order.html" class="checkout-btn" onclick="checkout()">${t.checkout}</a>
+        <a href="products.html" class="continue-shopping">${t.continueShoppng}</a>
+      `;
+    }
+
+    function updateQuantity(index, change) {
+      const newQty = cart[index].qty + change;
+      if (newQty < 1) {
+        removeItem(index);
+        return;
+      }
+      cart[index].qty = newQty;
+      saveCart();
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      saveCart();
+    }
+
+    function saveCart() {
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    function checkout() {
+      const t = translations[currentLang];
+      alert(t.redirect);
+    }
+
+    // عند تحميل الصفحة، تأكد من أن كل عنصر في السلة له صورة
+    function ensureCartImages() {
+      cart = cart.map(item => {
+        if (!item.image && productsDatabase[item.name]) {
+          return { ...item, image: productsDatabase[item.name].image };
+        }
+        return item;
+      });
+      saveCart();
+    }
+
+    // تهيئة الصفحة
+    applyTranslations();
+    ensureCartImages();
+    renderCart();
+  </script>
+</body>
+</html>
